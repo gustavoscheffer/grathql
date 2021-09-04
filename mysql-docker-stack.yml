@@ -1,0 +1,22 @@
+# Use root/toor as user/password credentials
+# Ex: docker stack deploy -c mysql-docker-stack.yml mysql
+version: '3.1'
+
+services:
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_USER: graphql
+      MYSQL_PASSWORD: graphql
+      MYSQL_DATABASE: graphql
+    ports:
+      - 3306:3306        
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - '8081:8080'
